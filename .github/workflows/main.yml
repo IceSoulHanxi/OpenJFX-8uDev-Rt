@@ -37,7 +37,8 @@ jobs:
           choco install --no-progress directx-sdk
         shell: cmd
       - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.1
+        uses: ilammy/msvc-dev-cmd@v1
+        #uses: microsoft/setup-msbuild@v1.0.1
       - name: Install OpenJ9 with chocolatey
         run: |
           choco install --no-progress AdoptOpenJDK8openj9 --params="/INSTALLLEVEL=2"
