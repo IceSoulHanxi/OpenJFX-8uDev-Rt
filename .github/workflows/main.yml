@@ -21,8 +21,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.1
       - name: Install cygwin base packages with chocolatey
         run: |
           choco config get cacheLocation
@@ -32,13 +30,15 @@ jobs:
           C:\tools\cygwin\cygwinsetup.exe -qgnNdO -R C:/tools/cygwin -s http://mirrors.kernel.org/sourceware/cygwin/ -P openssh,bison,flex,g++,gperf,make,makedepend,mercurial,perl,zip,unzip
           set path=C:\tools\cygwin\bin;C:\tools\cygwin\usr\bin;%path%;
         shell: cmd
-      - name: Install OpenJ9 with chocolatey
-        run: |
-          choco install --no-progress AdoptOpenJDK8openj9 --params="/INSTALLLEVEL=2"
-        shell: cmd
       - name: Install DirectX SDK with chocolatey
         run: |
           choco install --no-progress directx-sdk
+        shell: cmd
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.1
+      - name: Install OpenJ9 with chocolatey
+        run: |
+          choco install --no-progress AdoptOpenJDK8openj9 --params="/INSTALLLEVEL=2"
         shell: cmd
       - name: Install Ant with chocolatey
         run: |
