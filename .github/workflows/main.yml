@@ -51,4 +51,5 @@ jobs:
         shell: cmd
       - name: Build with Gradle
         run: ./gradlew build
-        
+        env:
+          DXSDK_DIR: 'C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)'
