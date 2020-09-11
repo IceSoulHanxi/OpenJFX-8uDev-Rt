@@ -35,7 +35,8 @@ jobs:
           MsiExec.exe /passive /X{1D8E6291-B0D5-35EC-8441-6616F567A0F7}
           MsiExec.exe /passive /X{F0C3E5D1-1ADE-321E-8167-68EF0DE699A5}
           choco install --no-progress directx-sdk
-          set DXSDK_DIR="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)"
+          setx DXSDK_DIR "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)" /m
+          echo %DXSDK_DIR%
         shell: cmd
       - name: Add msbuild to PATH
         uses: ilammy/msvc-dev-cmd@v1
