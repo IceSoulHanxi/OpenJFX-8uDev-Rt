@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: windows-2016
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -32,18 +32,13 @@ jobs:
         shell: cmd
       - name: Install DirectX SDK with chocolatey
         run: | # http://support.microsoft.com/kb/2728613
-          MsiExec.exe /passive /X{1D8E6291-B0D5-35EC-8441-6616F567A0F7}
-          MsiExec.exe /passive /X{F0C3E5D1-1ADE-321E-8167-68EF0DE699A5}
+          MsiExec.exe /quiet /X{1D8E6291-B0D5-35EC-8441-6616F567A0F7}
+          MsiExec.exe /quiet /X{F0C3E5D1-1ADE-321E-8167-68EF0DE699A5}
           choco install --no-progress directx-sdk
-          setx DXSDK_DIR "C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)" /m
-          @echo %DXSDK_DIR%
         shell: cmd
       - name: Add msbuild to PATH
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          sdk: 8.1
-          toolset: 14.0
-        #uses: microsoft/setup-msbuild@v1.0.1
+        #uses: ilammy/msvc-dev-cmd@v1
+        uses: microsoft/setup-msbuild@v1.0.1
       - name: Install OpenJ9 with chocolatey
         run: |
           choco install --no-progress AdoptOpenJDK8openj9 --params="/INSTALLLEVEL=2"
