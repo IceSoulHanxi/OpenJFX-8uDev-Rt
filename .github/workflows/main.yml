@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the custom branch
+on:
+  push:
+    branches: [ custom ]
+  pull_request:
+    branches: [ custom ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.1
+      - name: Install cygwin base packages with chocolatey
+        run: |
+          choco config get cacheLocation
+          choco install --no-progress cygwin
+      - name: Install cygwin additional packages
+        run: |
+          C:\tools\cygwin\cygwinsetup.exe -qgnNdO -R C:/tools/cygwin -s http://mirrors.kernel.org/sourceware/cygwin/ -P openssh,bison,flex,g++,gperf,make,makedepend,mercurial,perl,zip,unzip
+          set path=C:\tools\cygwin\bin;C:\tools\cygwin\usr\bin;%path%;
+        shell: cmd
+      - name: Install OpenJ9 with chocolatey
+        run: |
+          choco install --no-progress AdoptOpenJDK8openj9 --params="/INSTALLLEVEL=2"
+        shell: cmd
+      - name: Install DirectX SDK with chocolatey
+        run: |
+          choco install --no-progress directx-sdk
+        shell: cmd
+      - name: Install Ant with chocolatey
+        run: |
+          choco install --no-progress ant
+        shell: cmd
+      - name: Build with Gradle
+        run: ./gradlew build
+        
