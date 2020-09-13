@@ -59,7 +59,7 @@ jobs:
       - name: Build with Gradle
         run: |
           set WINSDK_DIR
-          ./gradlew build --stacktrace
+          ./gradlew build --stacktrace --debug
         env:
           MSVC_VER: '14.16.27023'
           VSINSTALLDIR: 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\'
