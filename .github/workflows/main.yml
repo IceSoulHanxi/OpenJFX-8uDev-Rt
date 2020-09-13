@@ -29,7 +29,7 @@ jobs:
           echo "::add-path::C:\tools\cygwin\bin"
           echo "::add-path::C:\tools\cygwin\usr\bin"
           #set path=C:\tools\cygwin\bin;C:\tools\cygwin\usr\bin;%path%;
-          echo path:%path%
+          set path
       - name: Install DirectX SDK with chocolatey
         run: | # http://support.microsoft.com/kb/2728613
           MsiExec.exe /quiet /X{1D8E6291-B0D5-35EC-8441-6616F567A0F7}
@@ -51,7 +51,7 @@ jobs:
         shell: cmd
       - name: Build with Gradle
         run: |
-          echo WINSDK_DIR:%WINSDK_DIR%
+          set WINSDK_DIR
           ./gradlew build
         env:
           DXSDK_DIR: 'C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)'
