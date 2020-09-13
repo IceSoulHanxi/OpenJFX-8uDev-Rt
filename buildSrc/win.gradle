@@ -104,7 +104,6 @@ def ccDebugFlags =
     IS_DEBUG_NATIVE ? ["/MDd", "/Od", "/Zi", "/DDEBUG"] : ["/O2", "/MD", "/DNDEBUG"]
 
 def winVsVer = Integer.parseInt(WINDOWS_VS_VER)
-println("winVsVer:$winVsVer")
 if (winVsVer >= 120) {
     // Serialize access to PDB file for debug builds if on VS2013 or later
     if (IS_DEBUG_NATIVE) ccDebugFlags += "/FS"
@@ -150,6 +149,9 @@ if (hasProperty('toolchainDir')) {
                       ? "$WINDOWS_VS_VSINSTALLDIR/VC/BIN/amd64"
                       : "$WINDOWS_VS_VSINSTALLDIR/VC/BIN")
 }
+msvcBinDir = "$WINDOWS_VS_VSINSTALLDIR/VC/Tools/MSVC/$msvcVer/bin/Host${CPU_BITS}/$CPU_BITS"
+println("winVsVer: " + winVsVer)
+println(cygpath(msvcBinDir))
 def compiler = IS_COMPILE_PARFAIT ? "cl.exe" : cygpath("$msvcBinDir/cl.exe")
 def linker = IS_COMPILE_PARFAIT ? "link.exe" : cygpath("$msvcBinDir/link.exe")
 def winSdkBinDir = "$WINDOWS_SDK_DIR/Bin"
