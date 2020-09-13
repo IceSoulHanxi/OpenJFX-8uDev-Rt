@@ -156,7 +156,8 @@ if (WINDOWS_VS_VER != "100") {
     winSdkBinDir += "/$CPU_BITS"
 }
 
-if (!file(cygpath("$winSdkBinDir/RC.Exe")).exists()) {
+if (!(file(cygpath("$winSdkBinDir/RC.Exe")).exists())) {
+    println("rc not exists")
     winSdkBinDir = "$WINDOWS_SDK_DIR/Bin/$WINDOWS_SDK_VERSION"
     if (WINDOWS_VS_VER != "100") {
         winSdkBinDir += "/$CPU_BITS"
