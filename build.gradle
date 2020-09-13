@@ -743,9 +743,9 @@ try {
         String v = inStream.readLine();
         println(v)
         if (v != null) {
-            int ib = v.indexOf(" (build ");
+            int ib = v.indexOf("(build ");
             if (ib != -1) {
-                String ver = v.substring(ib + 8, v.size() - 1);
+                String ver = v.substring(ib + 7, v.size() - 1);
 
                 defineProperty("jdkRuntimeVersion", ver)
                 defineProperty("jdkVersion", jdkRuntimeVersion.split("-")[0])
