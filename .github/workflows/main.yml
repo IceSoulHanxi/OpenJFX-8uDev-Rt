@@ -45,8 +45,8 @@ jobs:
         shell: cmd
       - name: Add msbuild to PATH
         uses: ilammy/msvc-dev-cmd@v1
-        with:
-          sdk: 8.1
+        #with:
+          #sdk: 8.1
         #uses: microsoft/setup-msbuild@v1.0.1
       - name: Install OpenJ9 with chocolatey
         run: |
