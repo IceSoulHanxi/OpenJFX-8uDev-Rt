@@ -21,6 +21,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: C:\Users\runneradmin\AppData\Local\Temp\chocolatey
+          key: ${{ runner.os }}-chocolatey-${{ matrix.os }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-chocolatey-${{ matrix.os }}-
+            ${{ runner.os }}-chocolatey-
       - name: Install Cygwin with chocolatey
         run: |
           choco config get cacheLocation
@@ -54,6 +61,6 @@ jobs:
           set WINSDK_DIR
           ./gradlew build --stacktrace
         env:
-          VSINSTALLDIR: C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\
+          VSINSTALLDIR: C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\
           DXSDK_DIR: 'C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)'
           WINSDK_DIR: 'C:\Program Files(x86)\Microsoft Visual Studio 10.0\VC\bin'
