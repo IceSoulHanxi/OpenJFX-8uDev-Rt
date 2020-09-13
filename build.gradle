@@ -657,7 +657,7 @@ compileTargets { t ->
 
     if (targetProperties.compileSwing) COMPILE_SWING = true
     if (targetProperties.compileSWT) COMPILE_SWT = true
-    if (targetProperties.compileFXPackager) COMPILE_FXPACKAGER = true
+    //if (targetProperties.compileFXPackager) COMPILE_FXPACKAGER = true
 
     if (!targetProperties.containsKey('compileWebnodeNative')) {
         // unless specified otherwise, we will compile native Webnode if IS_COMPILE_WEBKIT
