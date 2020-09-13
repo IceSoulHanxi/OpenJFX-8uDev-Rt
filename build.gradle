@@ -741,6 +741,7 @@ def inStream = new java.io.BufferedReader(new java.io.InputStreamReader(new java
 try {
     if (inStream.readLine() != null) {
         String v = inStream.readLine();
+        println(v)
         if (v != null) {
             int ib = v.indexOf(" (build ");
             if (ib != -1) {
