@@ -156,16 +156,14 @@ if (WINDOWS_VS_VER != "100") {
     winSdkBinDir += "/$CPU_BITS"
 }
 
-file(cygpath("$WINDOWS_SDK_DIR/Bin/")).eachDir{ directory->
-    println directory
-}
-
 if (!file(cygpath("$winSdkBinDir/RC.Exe")).exists()) {
     winSdkBinDir = "$WINDOWS_SDK_DIR/Bin/$WINDOWS_SDK_VERSION"
     if (WINDOWS_VS_VER != "100") {
         winSdkBinDir += "/$CPU_BITS"
     }
 }
+
+winSdkBinDir = "$WINDOWS_SDK_DIR/Bin/$CPU_BITS"
 
 ext.RC = cygpath("$winSdkBinDir/rc.exe")
 def rcCompiler = RC
