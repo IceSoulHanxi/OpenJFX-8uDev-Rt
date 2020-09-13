@@ -52,7 +52,7 @@ jobs:
       - name: Build with Gradle
         run: |
           set WINSDK_DIR
-          ./gradlew build
+          ./gradlew build --stacktrace --debug
         env:
           DXSDK_DIR: 'C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)'
           WINSDK_DIR: 'C:\Program Files(x86)\Microsoft Visual Studio 10.0\VC\bin'
