@@ -104,6 +104,7 @@ def ccDebugFlags =
     IS_DEBUG_NATIVE ? ["/MDd", "/Od", "/Zi", "/DDEBUG"] : ["/O2", "/MD", "/DNDEBUG"]
 
 def winVsVer = Integer.parseInt(WINDOWS_VS_VER)
+println("winVsVer:$winVsVer")
 if (winVsVer >= 120) {
     // Serialize access to PDB file for debug builds if on VS2013 or later
     if (IS_DEBUG_NATIVE) ccDebugFlags += "/FS"
