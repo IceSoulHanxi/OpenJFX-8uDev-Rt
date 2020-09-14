@@ -101,7 +101,7 @@ if (WINDOWS_SDK_DIR == null || WINDOWS_SDK_DIR == "") {
 
 // Define set of flags shared for all targets that support debug compilation
 def ccDebugFlags =
-    IS_DEBUG_NATIVE ? ["/MDd", "/Od", "/Zi", "/DDEBUG"] : ["/O2", "/MD", "/DNDEBUG"]
+    IS_DEBUG_NATIVE ? ["/MTd", "/Od", "/Zi", "/DDEBUG"] : ["/O2", "/MT", "/DNDEBUG"]
 
 def winVsVer = Integer.parseInt(WINDOWS_VS_VER)
 if (winVsVer >= 120) {
