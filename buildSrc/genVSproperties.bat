@@ -26,9 +26,9 @@ REM   and echos out a property file with the values of the environment
 REM   variables we want, e.g. PATH, INCLUDE, LIB, and LIBPATH.
 
 REM Clean out the current settings
-set INCLUDE=
-set LIB=
-set LIBPATH=
+::set INCLUDE=
+::set LIB=
+::set LIBPATH=
 
 REM Run the vsvars32.bat (12.0) / vcvars32.bat (15.0) file, sending it's output to neverland.
 REM The current officially supported Visual Studio version is 15.0.
