@@ -3315,10 +3315,10 @@ project(":apps") {
               ant.properties['jfxbuild.jfxrt.jar'] = jfxrtJar
               ant.properties['platforms.JDK_1.8.home'] = "${rootProject.ext.JDK_HOME}"
               ant.project.executeTarget("sampleAppsJar")
-              ant.project.executeTarget("scenebuilderSampleAppsJar")
-              if (!t.name.startsWith("arm")) {
-                ant.project.executeTarget("scenebuilderAppJar")
-              }
+              //ant.project.executeTarget("scenebuilderSampleAppsJar")
+              //if (!t.name.startsWith("arm")) {
+              //  ant.project.executeTarget("scenebuilderAppJar")
+              //}
             }
         }
         rootProject.appsjar.dependsOn(appsJar)
@@ -3328,10 +3328,10 @@ project(":apps") {
               ant.properties['targetBld'] = "$t.name"
               ant.properties['platforms.JDK_1.8.home'] = "${rootProject.ext.JDK_HOME}"
               ant.project.executeTarget("sampleAppsClean")
-              ant.project.executeTarget("scenebuilderSampleAppsClean")
-              if (!t.name.startsWith("arm")) {
-                ant.project.executeTarget("scenebuilderAppClean")
-              }
+              //ant.project.executeTarget("scenebuilderSampleAppsClean")
+              //if (!t.name.startsWith("arm")) {
+              //  ant.project.executeTarget("scenebuilderAppClean")
+              //}
               delete(ensembleLibDir);
             }
         }
