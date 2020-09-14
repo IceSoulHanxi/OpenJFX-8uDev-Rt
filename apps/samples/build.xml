@@ -11,13 +11,13 @@
 
     <target name="jar" depends="swingJar">
         <ant dir="3DViewer" target="jar" inheritAll="true"/>
-        <ant dir="Ensemble8" target="jar" inheritAll="true"/>
+        <!--  <ant dir="Ensemble8" target="jar" inheritAll="true"/> -->
         <ant dir="MandelbrotSet" target="jar" inheritAll="true"/>
     </target>
 
     <target name="clean">
         <ant dir="3DViewer" target="clean" inheritAll="true"/>
-        <ant dir="Ensemble8" target="clean" inheritAll="true"/>
+        <!-- <ant dir="Ensemble8" target="clean" inheritAll="true"/> -->
         <ant dir="MandelbrotSet" target="clean" inheritAll="true"/>
         <ant dir="Modena" target="clean" inheritAll="true"/>
     </target>
