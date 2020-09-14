@@ -326,7 +326,7 @@ WIN.glass.rcFlags = [
     "/d", "JFX_FNAME=glass.dll",
     "/d", "JFX_INTERNAL_NAME=glass",
     rcFlags].flatten();
-WIN.glass.ccFlags = [ccFlags, "/WX"].flatten()
+WIN.glass.ccFlags = ccFlags //[ccFlags, "/WX"].flatten()
 if (WINDOWS_VS_VER != "100") WIN.glass.ccFlags -= ["/WX"]
 WIN.glass.linker = linker
 WIN.glass.linkFlags = [linkFlags, "delayimp.lib", "gdi32.lib", "urlmon.lib", "Comdlg32.lib",
