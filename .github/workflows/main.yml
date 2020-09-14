@@ -58,7 +58,6 @@ jobs:
         shell: cmd
       - name: Build with Gradle
         run: |
-          set INCLUDE="%WindowsSdkDir%Include\um;%WindowsSdkDir%Include\shared;%WindowsSdkDir%Include\winrt;%WindowsSdkDir%Include\;"
           ./gradlew build --stacktrace --debug
         env:
           MSVC_VER: '14.16.27023'
