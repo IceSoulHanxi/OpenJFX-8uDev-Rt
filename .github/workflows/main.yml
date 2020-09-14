@@ -58,9 +58,30 @@ jobs:
         shell: cmd
       - name: Build with Gradle
         run: |
-          ./gradlew build --stacktrace -x test
+          ./gradlew zips -x test
         env:
           MSVC_VER: '14.16.27023'
           VSINSTALLDIR: 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\'
           DXSDK_DIR: 'C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)'
           WINSDK_DIR: 'C:\Program Files(x86)\Microsoft Visual Studio 10.0\VC\bin'
+      - name: Create Release
+        id: create_release
+        uses: monkeyWie/create-release@master
+        # uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Zip
+        id: upload-zip-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./build/bundles/javafx-sdk-overlay.zip
+          asset_name: javafx-sdk-overlay.zip
+          asset_content_type: application/zip
