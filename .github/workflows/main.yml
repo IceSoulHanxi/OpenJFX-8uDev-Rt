@@ -6,9 +6,9 @@ name: CI
 # events but only for the custom branch
 on:
   push:
-    branches: [ custom ]
-  pull_request:
-    branches: [ custom ]
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
